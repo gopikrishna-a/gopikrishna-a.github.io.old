@@ -6864,3 +6864,10 @@ green     #859900  operators, other keywords
   color: #2aa198; }
 
 /* Literal.Number.Integer.Long */
+#archive a {
+  text-decoration: none;
+  border: none; }
+  #archive a:hover {
+    color: #7f7f7f; }
+#archive li {
+  font-size: 18px; }

@@ -1,6 +1,6 @@
 # Site settings
 title:
-email:
+email: a.gopikrishna01@gmail.com
 author:
 description:
 url:
@@ -12,8 +12,11 @@ sass:
 
 # Social icons
 show_social_icons: true
-github_username: someGithubUser
-twitter_username: someTwitterUser
+github_username: gopikrishna-a
+facebook_username: gopikrishna.arepalli
+google_plus_username: +GopikrishnaArepalli
+linkedin_username: gopikrishna-a
+pinterest_username: agopikrishna01
 
 # plugins
 plugins: [jekyll-paginate]

@@ -21,4 +21,4 @@ pinterest_username: agopikrishna01
 # plugins
 plugins: [jekyll-paginate]
 #No of post per page
-paginate: 3
+paginate: 4

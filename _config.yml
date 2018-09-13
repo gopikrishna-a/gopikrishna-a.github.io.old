@@ -1,9 +1,10 @@
 # Site settings
-title:
+title: Gopikrishna Arepalli
 email: a.gopikrishna01@gmail.com
-author: GopikrishnaArepalli
+author: Gopikrishna Arepalli
 description:
-url: https://gopikrishna-a.github.io/
+baseurl: ""
+url: "https://gopikrishna-a.github.io/"
 
 # Build settings
 permalink: :title/

@@ -1,10 +1,10 @@
 #banner{
   position: relative;
-  background: url('../img/banner.jpg');
-  min-height: 250px;
+  //background: url('../img/banner.jpg');
+  min-height: 180px;
 
   .primary-overlay{
-    background: rgba(87, 120, 219, 0.8);
+    background: rgba(80, 80, 119, 1.0);
     position: absolute;
     top: 0;
     left: 0;
@@ -12,3 +12,4 @@
     height: 100%;
   }
 }
+

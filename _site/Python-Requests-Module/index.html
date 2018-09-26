@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" sizes="16x16 32x32 64x64" href="/favicon/favicon.ico">
+  <title>Gopikrishna Arepalli</title>
+
+
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+  <body>
+    <!-- NAV -->
+<nav class="navbar navbar-expand-md navbar-light py-4">
+  <div class="container">
+    <a href="/" class="navbar-brand">
+      <h4 class="d-inline align-middle pl-3 text-primary">Gopikrishna Arepalli</h4>
+    </a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a href="/" class="nav-link disabled"><b>Home</b></a>
+        </li>
+        <li class="nav-item">
+          <a href="/archive/" class="nav-link"><b>Archive</b></a>
+        </li>
+        <li class="nav-item">
+          <a href="/about/" class="nav-link"><b>About</b></a>
+        </li>
+        <li class="nav-item">
+          <a href="/wishes/" class="nav-link"><b>Wishes</b></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    <section id="banner" class="py-5 d-none d-sm-block">
+  <div class="primary-overlay text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-center">
+          <h1 class="display-3 pt-4">
+            Hello World!
+          </h1>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+</section>
+    <div id="post" class="container pt-3">
+  <div class="row">
+    <div class="col">
+      <p class="lead text-info">
+        Sep 26, 2018
+      </p>
+      <h1>Python Requests Module usage and Examples</h1>
+      <article>
+        <p>Hi There, In this post we’ll see how to send HTPP/S requests using requests module</p>
+
+<h4 id="what-is-requests">What is Requests</h4>
+<p><strong>Requests</strong> is an Apache2 Licensed HTTP library, written in Python. In programming, a library is a collection or pre-configured selection of routines, functions, and operations that a program can use. These elements are often referred to as modules, and stored in object format.</p>
+
+<p>Requests will allow you to send HTTP/1.1 requests using Python. With it, you can add content like headers, form data, multipart files, and parameters via simple Python libraries. It also allows you to access the response data of Python in the same way.</p>
+
+<h4 id="how-to-install-requests-module-for-python">How to Install Requests module for Python</h4>
+
+<p>Since <strong>requests</strong> is not a built-in module for python we have to download it, We can install requests module by running below command in Terminal or cmd (on Windows)</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>pip <span class="nb">install </span>requests</code></pre></figure>
+
+<h4 id="importing-the-requests-module">Importing the Requests Module</h4>
+
+<p>To work with the Requests module in Python, you must import the appropriate module. You can do this simply by adding the following code at the beginning of your script:</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">import requests</code></pre></figure>
+
+<p><strong>Note:</strong> To make sample HTTP requests in this Tutorial we will be using <strong><a href="http://httpbin.org">httpbin</a></strong> website which is a A simple HTTP Request &amp; Response Service.</p>
+
+<h4 id="making-a-http-get-request">Making a HTTP GET Request</h4>
+
+<p>Before making GET request using Python requests we will see how to make GET request using cURL you can know more about cURL <strong><a href="https://curl.haxx.se/">here</a></strong></p>
+
+<h5 id="making-get-request-using-curl">Making GET request Using Curl:</h5>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>curl <span class="nt">-s</span> <span class="nt">-X</span> GET <span class="s2">"Content-Type: application/json"</span> http://httpbin.org/get
+<span class="o">{</span>
+  <span class="s2">"args"</span>: <span class="o">{}</span>,
+  <span class="s2">"headers"</span>: <span class="o">{</span>
+    <span class="s2">"Accept"</span>: <span class="s2">"*/*"</span>,
+    <span class="s2">"Connection"</span>: <span class="s2">"close"</span>,
+    <span class="s2">"Host"</span>: <span class="s2">"httpbin.org"</span>,
+    <span class="s2">"User-Agent"</span>: <span class="s2">"curl/7.43.0"</span>
+  <span class="o">}</span>,
+  <span class="s2">"origin"</span>: <span class="s2">"205.234.19.3"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://httpbin.org/get"</span>
+<span class="o">}</span>
+<span class="err">$</span></code></pre></figure>
+
+<p>In the above example we perfomed a HTTP GET request using cURL now we will see how to make the same GET request using Python <strong>requests</strong></p>
+
+<h5 id="making-get-request-using-python-requests">Making GET request Using Python requests:</h5>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">import requests <span class="c">#importing requests module</span>
+
+<span class="c">#Defining headers for the request for you headers may be different</span>
+headers <span class="o">=</span> <span class="o">{</span><span class="s1">'Content-Type'</span> : <span class="s1">'application/json'</span>, <span class="s1">'Accept'</span> : <span class="s1">'application/json'</span><span class="o">}</span>
+<span class="c">#making a GET http request</span>
+response <span class="o">=</span> requests.get<span class="o">(</span>‘http://httpbin.org/get’, <span class="nv">headers</span><span class="o">=</span>headers<span class="o">)</span></code></pre></figure>
+
+<h5 id="working-with-response-code">Working with Response Code</h5>
+
+<p>Before you can do anything with the response content, it’s a good to check the current status code of the request that we made.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;&gt;&gt;</span> import requests
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> headers <span class="o">=</span> <span class="o">{</span><span class="s1">'Content-Type'</span> : <span class="s1">'application/json'</span>, <span class="s1">'Accept'</span> : <span class="s1">'application/json'</span><span class="o">}</span>
+<span class="o">&gt;&gt;&gt;</span> response <span class="o">=</span> requests.get<span class="o">(</span><span class="s1">'http://httpbin.org/get'</span>, <span class="nv">headers</span><span class="o">=</span>headers<span class="o">)</span>
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span>response.status_code<span class="o">)</span>
+200
+<span class="o">&gt;&gt;&gt;</span></code></pre></figure>
+
+<p>Here we can see that the response.status_code is 200 which means our GET request is got successful response from the website URL you can learn more about HTTP codes <strong><a href="https://www.tutorialspoint.com/http/http_status_codes.htm">here</a></strong></p>
+
+<p>After a web server returns a response, you can collect the content you need. This is also done using the get requests function.</p>
+
+<h5 id="get-the-response-content">Get the response content</h5>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span>response.text<span class="o">)</span>
+<span class="o">{</span>
+  <span class="s2">"args"</span>: <span class="o">{}</span>,
+  <span class="s2">"headers"</span>: <span class="o">{</span>
+    <span class="s2">"Accept"</span>: <span class="s2">"application/json"</span>,
+    <span class="s2">"Accept-Encoding"</span>: <span class="s2">"gzip, deflate"</span>,
+    <span class="s2">"Connection"</span>: <span class="s2">"close"</span>,
+    <span class="s2">"Content-Type"</span>: <span class="s2">"application/json"</span>,
+    <span class="s2">"Host"</span>: <span class="s2">"httpbin.org"</span>,
+    <span class="s2">"User-Agent"</span>: <span class="s2">"python-requests/2.19.1"</span>
+  <span class="o">}</span>,
+  <span class="s2">"origin"</span>: <span class="s2">"205.234.19.3"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://httpbin.org/get"</span>
+<span class="o">}</span>
+
+<span class="o">&gt;&gt;&gt;</span></code></pre></figure>
+
+<h4 id="make-a-http-post-request">Make a HTTP POST Request</h4>
+
+<h5 id="making-post-request-using-curl">Making POST request Using Curl:</h5>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>curl <span class="nt">-X</span> POST <span class="s2">"http://httpbin.org/post"</span> <span class="nt">-H</span> <span class="s2">"accept: application/json"</span>
+<span class="o">{</span>
+  <span class="s2">"args"</span>: <span class="o">{}</span>,
+  <span class="s2">"data"</span>: <span class="s2">""</span>,
+  <span class="s2">"files"</span>: <span class="o">{}</span>,
+  <span class="s2">"form"</span>: <span class="o">{}</span>,
+  <span class="s2">"headers"</span>: <span class="o">{</span>
+    <span class="s2">"Accept"</span>: <span class="s2">"application/json"</span>,
+    <span class="s2">"Connection"</span>: <span class="s2">"close"</span>,
+    <span class="s2">"Content-Length"</span>: <span class="s2">"0"</span>,
+    <span class="s2">"Host"</span>: <span class="s2">"httpbin.org"</span>,
+    <span class="s2">"User-Agent"</span>: <span class="s2">"curl/7.43.0"</span>
+  <span class="o">}</span>,
+  <span class="s2">"json"</span>: null,
+  <span class="s2">"origin"</span>: <span class="s2">"205.234.19.3"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://httpbin.org/post"</span>
+<span class="o">}</span>
+<span class="err">$</span></code></pre></figure>
+
+<p>In the above example we perfomed a HTTP POST request using cURL now we will see how to make the same POST request using Python <strong>requests</strong></p>
+
+<h5 id="making-post-request-using-python-requests">Making POST request Using Python requests:</h5>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;&gt;&gt;</span> import requests
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> headers <span class="o">=</span> <span class="o">{</span><span class="s1">'accept'</span>: <span class="s1">'application/json'</span><span class="o">}</span>
+<span class="o">&gt;&gt;&gt;</span> data <span class="o">=</span> <span class="o">{}</span>
+<span class="o">&gt;&gt;&gt;</span> response <span class="o">=</span> requests.post<span class="o">(</span><span class="s1">'http://httpbin.org/post'</span>, <span class="nv">headers</span><span class="o">=</span>headers, <span class="nv">data</span><span class="o">=</span>data<span class="o">)</span>
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span>response.status_code<span class="o">)</span>
+200
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span>response.text<span class="o">)</span>
+<span class="o">{</span>
+  <span class="s2">"args"</span>: <span class="o">{}</span>,
+  <span class="s2">"data"</span>: <span class="s2">""</span>,
+  <span class="s2">"files"</span>: <span class="o">{}</span>,
+  <span class="s2">"form"</span>: <span class="o">{}</span>,
+  <span class="s2">"headers"</span>: <span class="o">{</span>
+    <span class="s2">"Accept"</span>: <span class="s2">"application/json"</span>,
+    <span class="s2">"Accept-Encoding"</span>: <span class="s2">"gzip, deflate"</span>,
+    <span class="s2">"Connection"</span>: <span class="s2">"close"</span>,
+    <span class="s2">"Content-Length"</span>: <span class="s2">"0"</span>,
+    <span class="s2">"Host"</span>: <span class="s2">"httpbin.org"</span>,
+    <span class="s2">"User-Agent"</span>: <span class="s2">"python-requests/2.19.1"</span>
+  <span class="o">}</span>,
+  <span class="s2">"json"</span>: null,
+  <span class="s2">"origin"</span>: <span class="s2">"205.234.19.3"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://httpbin.org/post"</span>
+<span class="o">}</span></code></pre></figure>
+
+<p><strong>Note:</strong> Usually for POST request we need to pass some data but here in my case I don’t need to pass any data that’s why I made data = {} as empty dict</p>
+
+<h4 id="make-a-http-put-or-update-request">Make a HTTP PUT or Update Request</h4>
+
+<h5 id="making-put-request-using-curl">Making PUT request Using Curl:</h5>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>curl <span class="nt">-X</span> PUT <span class="s2">"http://httpbin.org/put"</span> <span class="nt">-H</span> <span class="s2">"accept: application/json"</span>
+<span class="o">{</span>
+  <span class="s2">"args"</span>: <span class="o">{}</span>,
+  <span class="s2">"data"</span>: <span class="s2">""</span>,
+  <span class="s2">"files"</span>: <span class="o">{}</span>,
+  <span class="s2">"form"</span>: <span class="o">{}</span>,
+  <span class="s2">"headers"</span>: <span class="o">{</span>
+    <span class="s2">"Accept"</span>: <span class="s2">"application/json"</span>,
+    <span class="s2">"Connection"</span>: <span class="s2">"close"</span>,
+    <span class="s2">"Content-Length"</span>: <span class="s2">"0"</span>,
+    <span class="s2">"Host"</span>: <span class="s2">"httpbin.org"</span>,
+    <span class="s2">"User-Agent"</span>: <span class="s2">"curl/7.43.0"</span>
+  <span class="o">}</span>,
+  <span class="s2">"json"</span>: null,
+  <span class="s2">"origin"</span>: <span class="s2">"205.234.19.3"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://httpbin.org/put"</span>
+<span class="o">}</span>
+<span class="err">$</span></code></pre></figure>
+
+<p>In the above example we perfomed a HTTP PUT request using cURL now we will see how to make the same PUT request using Python <strong>requests</strong></p>
+
+<h5 id="making-put-request-using-python-requests">Making PUT request Using Python requests:</h5>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;&gt;&gt;</span> import requests
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> headers <span class="o">=</span> <span class="o">{</span><span class="s1">'accept'</span>: <span class="s1">'application/json'</span><span class="o">}</span>
+<span class="o">&gt;&gt;&gt;</span> data <span class="o">=</span> <span class="o">{}</span>
+<span class="o">&gt;&gt;&gt;</span> response <span class="o">=</span> requests.put<span class="o">(</span><span class="s1">'http://httpbin.org/put'</span>, <span class="nv">headers</span><span class="o">=</span>headers, <span class="nv">data</span><span class="o">=</span>data<span class="o">)</span>
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span>response.status_code<span class="o">)</span>
+200
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span>response.text<span class="o">)</span>
+<span class="o">{</span>
+  <span class="s2">"args"</span>: <span class="o">{}</span>,
+  <span class="s2">"data"</span>: <span class="s2">""</span>,
+  <span class="s2">"files"</span>: <span class="o">{}</span>,
+  <span class="s2">"form"</span>: <span class="o">{}</span>,
+  <span class="s2">"headers"</span>: <span class="o">{</span>
+    <span class="s2">"Accept"</span>: <span class="s2">"application/json"</span>,
+    <span class="s2">"Accept-Encoding"</span>: <span class="s2">"gzip, deflate"</span>,
+    <span class="s2">"Connection"</span>: <span class="s2">"close"</span>,
+    <span class="s2">"Content-Length"</span>: <span class="s2">"0"</span>,
+    <span class="s2">"Host"</span>: <span class="s2">"httpbin.org"</span>,
+    <span class="s2">"User-Agent"</span>: <span class="s2">"python-requests/2.19.1"</span>
+  <span class="o">}</span>,
+  <span class="s2">"json"</span>: null,
+  <span class="s2">"origin"</span>: <span class="s2">"205.234.19.3"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://httpbin.org/put"</span>
+<span class="o">}</span>
+
+<span class="o">&gt;&gt;&gt;</span></code></pre></figure>
+
+<h4 id="make-a-http-patch-request">Make a HTTP PATCH Request</h4>
+
+<h5 id="making-patch-request-using-curl">Making PATCH request Using Curl:</h5>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>curl <span class="nt">-X</span> PATCH <span class="s2">"http://httpbin.org/patch"</span> <span class="nt">-H</span> <span class="s2">"accept: application/json"</span>
+<span class="o">{</span>
+  <span class="s2">"args"</span>: <span class="o">{}</span>,
+  <span class="s2">"data"</span>: <span class="s2">""</span>,
+  <span class="s2">"files"</span>: <span class="o">{}</span>,
+  <span class="s2">"form"</span>: <span class="o">{}</span>,
+  <span class="s2">"headers"</span>: <span class="o">{</span>
+    <span class="s2">"Accept"</span>: <span class="s2">"application/json"</span>,
+    <span class="s2">"Connection"</span>: <span class="s2">"close"</span>,
+    <span class="s2">"Content-Length"</span>: <span class="s2">"0"</span>,
+    <span class="s2">"Host"</span>: <span class="s2">"httpbin.org"</span>,
+    <span class="s2">"User-Agent"</span>: <span class="s2">"curl/7.43.0"</span>
+  <span class="o">}</span>,
+  <span class="s2">"json"</span>: null,
+  <span class="s2">"origin"</span>: <span class="s2">"205.234.19.3"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://httpbin.org/patch"</span>
+<span class="o">}</span>
+<span class="err">$</span></code></pre></figure>
+
+<p>In the above example we perfomed a HTTP PATCH request using cURL now we will see how to make the same PATCH request using Python <strong>requests</strong></p>
+
+<h5 id="making-patch-request-using-python-requests">Making PATCH request Using Python requests:</h5>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;&gt;&gt;</span> import requests
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> headers <span class="o">=</span> <span class="o">{</span><span class="s1">'accept'</span>: <span class="s1">'application/json'</span><span class="o">}</span>
+<span class="o">&gt;&gt;&gt;</span> data <span class="o">=</span> <span class="o">{}</span>
+<span class="o">&gt;&gt;&gt;</span> response <span class="o">=</span> requests.patch<span class="o">(</span><span class="s1">'http://httpbin.org/patch'</span>, <span class="nv">headers</span><span class="o">=</span>headers, <span class="nv">data</span><span class="o">=</span>data<span class="o">)</span>
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span>response.status_code<span class="o">)</span>
+200
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span>response.text<span class="o">)</span>
+<span class="o">{</span>
+  <span class="s2">"args"</span>: <span class="o">{}</span>,
+  <span class="s2">"data"</span>: <span class="s2">""</span>,
+  <span class="s2">"files"</span>: <span class="o">{}</span>,
+  <span class="s2">"form"</span>: <span class="o">{}</span>,
+  <span class="s2">"headers"</span>: <span class="o">{</span>
+    <span class="s2">"Accept"</span>: <span class="s2">"application/json"</span>,
+    <span class="s2">"Accept-Encoding"</span>: <span class="s2">"gzip, deflate"</span>,
+    <span class="s2">"Connection"</span>: <span class="s2">"close"</span>,
+    <span class="s2">"Content-Length"</span>: <span class="s2">"0"</span>,
+    <span class="s2">"Host"</span>: <span class="s2">"httpbin.org"</span>,
+    <span class="s2">"User-Agent"</span>: <span class="s2">"python-requests/2.19.1"</span>
+  <span class="o">}</span>,
+  <span class="s2">"json"</span>: null,
+  <span class="s2">"origin"</span>: <span class="s2">"205.234.19.3"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://httpbin.org/patch"</span>
+<span class="o">}</span>
+
+<span class="o">&gt;&gt;&gt;</span></code></pre></figure>
+
+
+      </article>
+    </div>
+  </div>
+</div>
+    <footer class="py-5">
+  <hr>
+  <div class="container text-center text-info">
+    <div class="row">
+      <div class="col">
+        
+          <div class="social-links">
+  <a target="_blank" href="https://github.com/gopikrishna-a">
+    <i class="fab fa-github fa-2x"></i>
+  </a>
+  <a href="mailto:a.gopikrishna01@gmail.com">
+    <i class="fa fa-envelope fa-2x" ></i>
+  </a>
+  <a target="_blank" href="https://www.facebook.com/gopikrishna.arepalli">
+    <i class="fab fa-facebook fa-2x"></i>
+  </a>
+  <a target="_blank" href="https://plus.google.com/+GopikrishnaArepalli">
+    <i class="fab fa-google-plus fa-2x"></i>
+  </a>
+  <a target="_blank" href="https://www.linkedin.com/in/GopikrishnaArepalli">
+    <i class="fab fa-linkedin fa-2x"></i>
+  </a>
+  <a target="_blank" href="https://pinterest.com/agopikrishna01">
+    <i class="fab fa-pinterest fa-2x"></i>
+  </a>
+</div>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        All content copyright Gopikrishna Arepalli &copy; 2018.
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        All rights reserved.
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- JS -->
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script src="/js/clipboard.min.js"></script>
+<script src="/js/codeselect.js"></script>
+  </body>
+</html>

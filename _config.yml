@@ -22,7 +22,7 @@ pinterest_username: agopikrishna01
 # plugins
 plugins: [jekyll-paginate]
 #No of post per page
-paginate: 4
+paginate: 5
 
 # Disqus Comments
 disqus:

@@ -5,7 +5,7 @@ summary: We'll see how to use requests module in python to send HTTP/S Requests
 
 ---
 
-Hi There, In this post we'll see how to send HTPP/S requests using requests module
+Hi There, In this post we'll see how to send HTPP/S requests using Python **requests** module
 
 #### What is Requests 
 **Requests** is an Apache2 Licensed HTTP library, written in Python. In programming, a library is a collection or pre-configured selection of routines, functions, and operations that a program can use. These elements are often referred to as modules, and stored in object format.
@@ -64,10 +64,9 @@ headers = {'Content-Type' : 'application/json', 'Accept' : 'application/json'}
 response = requests.get(‘http://httpbin.org/get’, headers=headers)
 {% endhighlight %}
 
-##### Working with Response Code
+Before you can do anything with the response content, it’s a good to check the current status code of the request that we made.
 
-
-Before you can do anything with the response content, it’s a good to check the current status code of the request that we made. 
+##### Working with Response Code 
 
 {% highlight Bash %}
 >>> import requests
@@ -99,8 +98,6 @@ After a web server returns a response, you can collect the content you need. Thi
   "origin": "205.234.19.3",
   "url": "http://httpbin.org/get"
 }
-
->>>
 {% endhighlight %}
 
 #### Make a HTTP POST Request
@@ -157,7 +154,6 @@ In the above example we perfomed a HTTP POST request using cURL now we will see 
   "origin": "205.234.19.3",
   "url": "http://httpbin.org/post"
 }
-
 {% endhighlight %}
 
 **Note:** Usually for POST request we need to pass some data but here in my case I don't need to pass any data that's why I made data = {} as empty dict
@@ -217,8 +213,6 @@ In the above example we perfomed a HTTP PUT request using cURL now we will see h
   "origin": "205.234.19.3",
   "url": "http://httpbin.org/put"
 }
-
->>>
 {% endhighlight %}
 
 
@@ -276,6 +270,71 @@ In the above example we perfomed a HTTP PATCH request using cURL now we will see
   "origin": "205.234.19.3",
   "url": "http://httpbin.org/patch"
 }
-
->>>
 {% endhighlight %}
+
+#### Make a HTTP DELETE Request
+
+##### Making DELETE request Using Curl:
+
+{% highlight Bash %}
+$ curl -X DELETE "http://httpbin.org/delete" -H "accept: application/json"
+{
+  "args": {},
+  "data": "",
+  "files": {},
+  "form": {},
+  "headers": {
+    "Accept": "application/json",
+    "Connection": "close",
+    "Content-Length": "0",
+    "Host": "httpbin.org",
+    "User-Agent": "curl/7.43.0"
+  },
+  "json": null,
+  "origin": "205.234.19.3",
+  "url": "http://httpbin.org/delete"
+}
+$
+{% endhighlight %}
+
+In the above example we perfomed a HTTP DELETE request using cURL now we will see how to make the same DELETE request using Python **requests**
+
+##### Making DELETE request Using Python requests:
+{% highlight Bash %}
+>>> import requests
+>>>
+>>> headers = {'accept': 'application/json'}
+>>> response = requests.delete('http://httpbin.org/delete', headers=headers)
+>>> print(response.status_code)
+200
+>>> print(response.text)
+{
+  "args": {},
+  "data": "",
+  "files": {},
+  "form": {},
+  "headers": {
+    "Accept": "application/json",
+    "Accept-Encoding": "gzip, deflate",
+    "Connection": "close",
+    "Content-Length": "0",
+    "Host": "httpbin.org",
+    "User-Agent": "python-requests/2.19.1"
+  },
+  "json": null,
+  "origin": "205.234.19.3",
+  "url": "http://httpbin.org/delete"
+}
+{% endhighlight %}
+
+We can also pass user credentials if it's required as follows
+
+##### Making HTTP request by passing authentication credentials Using Python requests:
+{% highlight Bash %}
+auth_values = ('username', 'password')
+response = requests.get(url, auth=auth_values, headers=headers)
+{% endhighlight %}
+
+
+
+I hope this post is usefull for you Thanks for reading..

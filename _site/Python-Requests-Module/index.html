@@ -60,7 +60,7 @@
       </p>
       <h1>Python Requests Module usage and Examples</h1>
       <article>
-        <p>Hi There, In this post we’ll see how to send HTPP/S requests using requests module</p>
+        <p>Hi There, In this post we’ll see how to send HTPP/S requests using Python <strong>requests</strong> module</p>
 
 <h4 id="what-is-requests">What is Requests</h4>
 <p><strong>Requests</strong> is an Apache2 Licensed HTTP library, written in Python. In programming, a library is a collection or pre-configured selection of routines, functions, and operations that a program can use. These elements are often referred to as modules, and stored in object format.</p>
@@ -112,9 +112,9 @@ headers <span class="o">=</span> <span class="o">{</span><span class="s1">'Conte
 <span class="c">#making a GET http request</span>
 response <span class="o">=</span> requests.get<span class="o">(</span>‘http://httpbin.org/get’, <span class="nv">headers</span><span class="o">=</span>headers<span class="o">)</span></code></pre></figure>
 
-<h5 id="working-with-response-code">Working with Response Code</h5>
-
 <p>Before you can do anything with the response content, it’s a good to check the current status code of the request that we made.</p>
+
+<h5 id="working-with-response-code">Working with Response Code</h5>
 
 <figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;&gt;&gt;</span> import requests
 <span class="o">&gt;&gt;&gt;</span>
@@ -143,9 +143,7 @@ response <span class="o">=</span> requests.get<span class="o">(</span>‘http://
   <span class="o">}</span>,
   <span class="s2">"origin"</span>: <span class="s2">"205.234.19.3"</span>,
   <span class="s2">"url"</span>: <span class="s2">"http://httpbin.org/get"</span>
-<span class="o">}</span>
-
-<span class="o">&gt;&gt;&gt;</span></code></pre></figure>
+<span class="o">}</span></code></pre></figure>
 
 <h4 id="make-a-http-post-request">Make a HTTP POST Request</h4>
 
@@ -253,9 +251,7 @@ response <span class="o">=</span> requests.get<span class="o">(</span>‘http://
   <span class="s2">"json"</span>: null,
   <span class="s2">"origin"</span>: <span class="s2">"205.234.19.3"</span>,
   <span class="s2">"url"</span>: <span class="s2">"http://httpbin.org/put"</span>
-<span class="o">}</span>
-
-<span class="o">&gt;&gt;&gt;</span></code></pre></figure>
+<span class="o">}</span></code></pre></figure>
 
 <h4 id="make-a-http-patch-request">Make a HTTP PATCH Request</h4>
 
@@ -308,10 +304,68 @@ response <span class="o">=</span> requests.get<span class="o">(</span>‘http://
   <span class="s2">"json"</span>: null,
   <span class="s2">"origin"</span>: <span class="s2">"205.234.19.3"</span>,
   <span class="s2">"url"</span>: <span class="s2">"http://httpbin.org/patch"</span>
+<span class="o">}</span></code></pre></figure>
+
+<h4 id="make-a-http-delete-request">Make a HTTP DELETE Request</h4>
+
+<h5 id="making-delete-request-using-curl">Making DELETE request Using Curl:</h5>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>curl <span class="nt">-X</span> DELETE <span class="s2">"http://httpbin.org/delete"</span> <span class="nt">-H</span> <span class="s2">"accept: application/json"</span>
+<span class="o">{</span>
+  <span class="s2">"args"</span>: <span class="o">{}</span>,
+  <span class="s2">"data"</span>: <span class="s2">""</span>,
+  <span class="s2">"files"</span>: <span class="o">{}</span>,
+  <span class="s2">"form"</span>: <span class="o">{}</span>,
+  <span class="s2">"headers"</span>: <span class="o">{</span>
+    <span class="s2">"Accept"</span>: <span class="s2">"application/json"</span>,
+    <span class="s2">"Connection"</span>: <span class="s2">"close"</span>,
+    <span class="s2">"Content-Length"</span>: <span class="s2">"0"</span>,
+    <span class="s2">"Host"</span>: <span class="s2">"httpbin.org"</span>,
+    <span class="s2">"User-Agent"</span>: <span class="s2">"curl/7.43.0"</span>
+  <span class="o">}</span>,
+  <span class="s2">"json"</span>: null,
+  <span class="s2">"origin"</span>: <span class="s2">"205.234.19.3"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://httpbin.org/delete"</span>
 <span class="o">}</span>
+<span class="err">$</span></code></pre></figure>
 
-<span class="o">&gt;&gt;&gt;</span></code></pre></figure>
+<p>In the above example we perfomed a HTTP DELETE request using cURL now we will see how to make the same DELETE request using Python <strong>requests</strong></p>
 
+<h5 id="making-delete-request-using-python-requests">Making DELETE request Using Python requests:</h5>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="o">&gt;&gt;&gt;</span> import requests
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> headers <span class="o">=</span> <span class="o">{</span><span class="s1">'accept'</span>: <span class="s1">'application/json'</span><span class="o">}</span>
+<span class="o">&gt;&gt;&gt;</span> response <span class="o">=</span> requests.delete<span class="o">(</span><span class="s1">'http://httpbin.org/delete'</span>, <span class="nv">headers</span><span class="o">=</span>headers<span class="o">)</span>
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span>response.status_code<span class="o">)</span>
+200
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span>response.text<span class="o">)</span>
+<span class="o">{</span>
+  <span class="s2">"args"</span>: <span class="o">{}</span>,
+  <span class="s2">"data"</span>: <span class="s2">""</span>,
+  <span class="s2">"files"</span>: <span class="o">{}</span>,
+  <span class="s2">"form"</span>: <span class="o">{}</span>,
+  <span class="s2">"headers"</span>: <span class="o">{</span>
+    <span class="s2">"Accept"</span>: <span class="s2">"application/json"</span>,
+    <span class="s2">"Accept-Encoding"</span>: <span class="s2">"gzip, deflate"</span>,
+    <span class="s2">"Connection"</span>: <span class="s2">"close"</span>,
+    <span class="s2">"Content-Length"</span>: <span class="s2">"0"</span>,
+    <span class="s2">"Host"</span>: <span class="s2">"httpbin.org"</span>,
+    <span class="s2">"User-Agent"</span>: <span class="s2">"python-requests/2.19.1"</span>
+  <span class="o">}</span>,
+  <span class="s2">"json"</span>: null,
+  <span class="s2">"origin"</span>: <span class="s2">"205.234.19.3"</span>,
+  <span class="s2">"url"</span>: <span class="s2">"http://httpbin.org/delete"</span>
+<span class="o">}</span></code></pre></figure>
+
+<p>We can also pass user credentials if it’s required as follows</p>
+
+<h5 id="making-http-request-by-passing-authentication-credentials-using-python-requests">Making HTTP request by passing authentication credentials Using Python requests:</h5>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">auth_values <span class="o">=</span> <span class="o">(</span><span class="s1">'username'</span>, <span class="s1">'password'</span><span class="o">)</span>
+response <span class="o">=</span> requests.get<span class="o">(</span>url, <span class="nv">auth</span><span class="o">=</span>auth_values, <span class="nv">headers</span><span class="o">=</span>headers<span class="o">)</span></code></pre></figure>
+
+<p>I hope this post is usefull for you Thanks for reading..</p>
 
       </article>
     </div>
